@@ -26,9 +26,10 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        ll n,q,x,y;
+        ll n,q;
         cin>>n>>q;
         ll arr[n];
+
         for (int i=0;i<n;i++)
             cin>>arr[i];
 
@@ -42,39 +43,27 @@ int main(){
 
         for (int i=n-2;i>=0;i--)
             suff[i] = __gcd(suff[i+1],arr[i]);
-
         /*for (int i=0;i<n;i++)
             cout<<pre[i]<<" ";
         cout<<endl;
-        for (int i=n-1;i>=0;i--)
-            cout<<suff[i]<<" ";
-        cout<<endl;*/
-
+        for (int i=0;i<n;i++)
+            cout<<suff[i]<<" ";*/
+        ll m,x,y,z;
         for (int i=0;i<q;i++){
             cin>>x>>y;
-            ll g,h;
-            if (x-1 == 0)
-                g = 0;
-            else 
-                g = pre[x-2];
-
-            if (y == n)
-                h = 0;
+            if (x>1)
+                m = pre[x-2];
             else
-                h = suff[y];
+                m = 0;
 
-            if (g == 0 && h == 0)
-                cout<<1<<endl;
-            else if (g == 0)
-                cout<<h<<endl;
-            else if (h == 0)
-                cout<<g<<endl;
-            else{
-                ll ans = __gcd(g,h);
-                cout<<ans<<endl;
-            }
+            if (y < n)
+                z = suff[y];
+            else
+                z = 0;
+
+            ll ans = __gcd(m,z);
+            cout<<ans<<endl;
+
         }
-
-
     }    
 }
