@@ -23,27 +23,27 @@ bool isPrime(int n)
 }
 
 int main(){
-	ll a,b,c,d,e;
-	cin>>a>>b>>c>>d>>e;
-
-	ll sum = b;
-	if (sum>=a){
-		cout<<1<<endl;
-		return 0;
+	ll n,m,a,b,c,d;
+	cin>>n>>m;
+	string x,y,z,t;
+	x = to_string(n);
+	ll len = x.size();
+	ll max=INT_MIN;
+	t = x;
+	for (int i=0;i<len;i++){
+		for (int j=i;j<len;j++){
+			swap(t[i],t[j]);
+			y = t;
+			sort(y.begin()+i+1,y.end());
+			a = stoll(y);
+			if (a>max && a<=m){
+				max = a;
+				z = y;
+			}
+			swap(t[i],t[j]);
+		}
+		t = z;
 	}
-	sum -= e;
-	ll f = d;
-	while(1){
-		if (sum+d<=c){
-			sum += sum+d;
-		}
-		else
-			sum +=c ;
-		ans++;
-		d += f;
-		if (sum>=a){
-			cout<<ans<<endl;
-			return 0;
-		}
-	}	
+	cout<<max<<endl;
+
 }
